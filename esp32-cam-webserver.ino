@@ -48,7 +48,7 @@
 #include "camera_pins.h"
 
 // Internal filesystem (SPIFFS)
-// used for non-volatile camera settings and face DB store
+// used for non-volatile camera settings
 #include "storage.h"
 
 // Sketch Info
@@ -155,18 +155,6 @@ const int pwmMax = pow(2,pwmresolution)-1;
     bool filesystem = false;
 #else
     bool filesystem = true;
-#endif
-
-#if defined(FACE_DETECTION)
-    int8_t detection_enabled = 1;
-    #if defined(FACE_RECOGNITION)
-        int8_t recognition_enabled = 1;
-    #else
-       int8_t recognition_enabled = 0;
-    #endif
-#else
-    int8_t detection_enabled = 0;
-    int8_t recognition_enabled = 0;
 #endif
 
 // Debug Data for stream and capture
@@ -530,9 +518,8 @@ void setup() {
     if (filesystem) {
         filesystemStart();
         loadPrefs(SPIFFS);
-        loadFaceDB(SPIFFS);
     } else {
-        Serial.println("No Internal Filesystem, cannot save preferences or face DB");
+        Serial.println("No Internal Filesystem, cannot save preferences");
     }
 
     /*

@@ -53,8 +53,6 @@ vflip           - 0 = disable, 1 = enable
 rotate          - Rotation Angle; integer, only -90, 0, 90 values are recognised
 dcw             - 0 = disable, 1 = enable
 colorbar        - Overlays a color test pattern on the stream; integer, 1 = enabled
-face_detect     - Face Detection; 1 = enabled, Only settable if framesize <= 4 (CIF)
-face_recognize  - Face recognition; 1 = enabled, only settable if Face detection is already enabled
 ```
 #### Read Only
 These values are returned in the `/status` JSON response, but cannot be set via the `/control` URI.
@@ -66,7 +64,6 @@ stream_url      - Raw stream URL; string
 #### Commands
 These are commands; they can be sent by calling the `/control` URI with them as the `<key>`, the `<val>` must be supplied, but can be any value and is ignored.
 ```
-face_enroll     - Enroll a new face in the FaceDB (only when face recognition is avctive)
 save_prefs      - Saves preferences file
 clear_prefs     - Deletes the preferences file
 reboot          - Reboots the camera
